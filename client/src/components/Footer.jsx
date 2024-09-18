@@ -6,7 +6,7 @@ function Footer() {
   return (
     <footer>
       <img src={Logo} alt="" />
-      <span style={{ fontSize: "20px" }}>Made By Sahu & Nithin 😎</span>
+      <span style={{ fontSize: "20px" }}>Blog Website😎</span>
     </footer>
   );
 }

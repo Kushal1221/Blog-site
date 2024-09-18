@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "openai": "^4.0.0",
     "react-quill": "^2.0.0"
   }
 }

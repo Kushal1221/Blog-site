@@ -1,4 +1,4 @@
-import OpenAI from "openai";
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import React, { useEffect, useState } from "react";
 import Edit from "../assets/edit.png";
 import Delete from "../assets/delete.png";
@@ -7,9 +7,9 @@ import "../style/style.scss";
 import client, { createHeaders } from "../axios-config";
 import moment from "moment";
 
-// import ReactQuill, { Quill } from "react-quill";
-// import "react-quill/dist/quill.snow.css";
-// import ImageResize from "quill-image-resize-module-react";
+
+// require('dotenv').config();
+
 
 function Single() {
   const [comment, setComment] = useState("");
@@ -123,28 +123,21 @@ function Single() {
     const doc = new DOMParser().parseFromString(html, "text/html");
     return doc.body.textContent;
   };
+  const before_summarise = getText(post.content);
 
-  const openai = new OpenAI({
-    apiKey: "your api key",
-    dangerouslyAllowBrowser: true,
-  });
-  const text = getText(post.content);
+  //api key
+  const genAI = new GoogleGenerativeAI(import.meta.env.VITE_APP_API_KEY);
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"}); 
 
   const HandleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
-    const completion = await openai.chat.completions.create({
-      messages: [
-        {
-          role: "system",
-          content: "You are a assistant designed to summaries",
-        },
-        { role: "user", content: text },
-      ],
-      model: "gpt-3.5-turbo-0125",
-      response_format: { type: "text" },
-    });
-    setsummarizedtext(completion.choices[0].message.content);
+    const prompt = "summarize the following content: "+ before_summarise;
+  
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
+    setsummarizedtext(text);
     setLoading(false);
   };
 

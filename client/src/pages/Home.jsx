@@ -54,7 +54,9 @@ function Home() {
                 <h1>{post.title}</h1>
               </Link>
               <p>{getText(post.content).slice(0, 200) + "..."}</p>
-              <button>Read More</button>
+              <Link className="link" to={`/post/${post.post_id}`}>
+                <button>Read More</button>
+              </Link>
             </div>
           </div>
         ))}
