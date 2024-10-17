@@ -34,7 +34,7 @@ function Profile() {
 
   const handleDelete = async (postIdToDelete) => {
     try {
-      await client.delete(`api/posts/${postIdToDelete}`, {
+      await client.delete(`api/posts/${postIdToDelete}/`, {
         headers: createHeaders(),
       });
       setPosts((prevPosts) =>

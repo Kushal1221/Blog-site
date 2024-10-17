@@ -60,7 +60,7 @@ function Write() {
 
   const upload = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    // console.log(formData);
 
     const form_data = new FormData();
     form_data.append("image", formData.image, formData.image.name);
@@ -73,7 +73,7 @@ function Write() {
         headers: createHeadersImage(),
       });
       setID(response.data.image_id);
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error(error);
     }
