@@ -7,7 +7,7 @@ This is my DBMS mini project!
 - Frontend- React, SCSS
 - Backend- python(Django)
 - Database- SQLite
-- API- OpenAI (chatgpt 3.5)
+- API- GeminiAi (gemini-1.5-flash)
 
 ## Tables used in our project
 
